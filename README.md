@@ -18,6 +18,7 @@ The design was taken from [DESIGN LINK](https://www.figma.com/file/uEetgWenSRxk9
 The data for the products were obtained from [API LINK](https://mate-academy.github.io/react_phone-catalog/api/products.json)
 
 ## Installation Instructions
+!!!ALERT!!! Requires Node.js v14.
 1. Clone the repository
 2. Install dependencies using `npm install`
 3. Run the project using `npm start`

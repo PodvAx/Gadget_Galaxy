@@ -13,6 +13,7 @@ import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage';
 import { ProductPage } from './pages/ProductPage';
 import { getAccessories, getPhones, getTablets } from './utils/api';
+import React from 'react';
 
 export const Root = () => (
   <Router>
