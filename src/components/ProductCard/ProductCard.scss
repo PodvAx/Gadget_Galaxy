@@ -1,0 +1,74 @@
+@import '../../styles-utils/utils';
+
+.ProductCard{
+  border: 1px solid $elementsAccent;
+  padding: 24px 23px;
+
+  transition: border-color $transitionDuration;
+
+  &:hover {
+    border-color: $primaryAccent;
+  }
+
+  &__image {
+    @include img-full-center;
+
+    transition: transform $transitionDuration;
+  }
+
+  &__name {
+    @include body-text;
+
+    margin-top: 24px;
+  }
+
+  &__linkBlock {
+    text-decoration: none;
+    color: $primaryAccent;
+
+    &:hover {
+      & .ProductCard__image {
+        transform: scale(1.05);
+      }
+
+      & .ProductCard__name {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__imgMask {
+    width: 208px;
+    height: 208px;
+    margin: 8px 8px 0;
+    padding: 0 8px;
+  }
+
+  &__pricesBlock {
+    @include default-flex($align: center, $gap: 8px);
+
+    width: fit-content;
+
+    margin-top: 6.5px;
+  }
+
+  &__fullPrice {
+    @include full-price-text;
+  }
+
+  &__divider {
+    @include divider;
+
+    margin-top: 6.5px;
+  }
+
+  &__description {
+    @include default-flex($direction:column, $gap: 8px);
+
+    margin-top: 16px;
+  }
+
+  &__buttonsBlock {
+    margin-top: 16px;
+  }
+}

@@ -1,0 +1,22 @@
+@import '../../styles-utils/utils';
+
+.Categories {
+  @include default-grid-template;
+
+  &__title {
+    grid-column: 1 / -1;
+  }
+
+  &__card {
+    grid-column: span 8;
+    margin-top: 24px;
+
+    transition: box-shadow $transitionDuration,
+                transform $transitionDuration;
+
+    &:hover {
+      box-shadow: 0 4px 8px $hoverAndBgAccent;
+      transform: scale(0.95);
+    }
+  }
+}
