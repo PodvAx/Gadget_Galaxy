@@ -1,7 +1,7 @@
-# Phone Catalog
+# Gadget Galaxy
 
 ## Project Description
-Phone Catalog is a web application for browsing a catalog of mobile phones, tablets, and accessories. Users can view product details, add them to the cart, and select favorite products.
+Gadget Galaxy is a web application for browsing a catalog of mobile phones, tablets, and accessories. Users can view product details, add them to the cart, and select favorite products.
 
 ## Technologies
 The project was developed using the following technologies:
