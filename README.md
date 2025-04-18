@@ -10,7 +10,7 @@ The project was developed using the following technologies:
 - BEM methodology
 
 ## Demo
-[DEMO LINK](https://podvax.github.io/Phone_Catalog/)
+[DEMO LINK](https://podvax.github.io/Gadget_Galaxy/)
 
 ## Design
 The design was taken from [DESIGN LINK](https://www.figma.com/file/uEetgWenSRxk9jgiym6Yzp/Phone-catalog-redesign?node-id=1%3A2)
