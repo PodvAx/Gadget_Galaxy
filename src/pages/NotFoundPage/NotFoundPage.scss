@@ -1,7 +1,12 @@
 @import '../../styles-utils/utils';
 
 .NotFoundPage {
-  @include default-flex($align: center, $justify: center, $direction: column, $gap: 24px);
+  @include default-flex(
+    $align: center,
+    $justify: center,
+    $direction: column,
+    $gap: 24px
+  );
 
   &__link {
     @include uppercase-text;

@@ -5,15 +5,18 @@
 
   &__addToCart {
     @include button-text;
-    @include bg-and-border($borderColor: $primaryAccent, $bgColor: $primaryAccent);
+    @include bg-and-border(
+      $borderColor: $primaryAccent,
+      $bgColor: $primaryAccent
+    );
 
     padding: 9px 0 8px;
     color: $whiteAccent;
     flex-grow: 2;
 
-    transition: box-shadow $transitionDuration,
-                text-shadow $transitionDuration;
-
+    transition:
+      box-shadow $transitionDuration,
+      text-shadow $transitionDuration;
 
     &:hover {
       box-shadow: 0 3px 13px $primaryAccent;
@@ -21,7 +24,10 @@
     }
 
     &--added {
-      @include bg-and-border($borderColor: $elementsAccent, $bgColor: $whiteAccent);
+      @include bg-and-border(
+        $borderColor: $elementsAccent,
+        $bgColor: $whiteAccent
+      );
 
       color: $greenAccent;
     }
@@ -34,7 +40,6 @@
     &--added {
       border-color: $elementsAccent;
     }
-
   }
 
   &__heart {

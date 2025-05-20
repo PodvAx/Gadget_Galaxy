@@ -3,7 +3,6 @@
 .ProductSelection {
   @include default-flex($direction: column, $gap: 24px);
 
-
   &__subhead {
     @include small-text;
 
@@ -49,11 +48,11 @@
     }
 
     &--gold {
-      background-color: #D4AF37;
+      background-color: #d4af37;
     }
 
     &--silver {
-      background-color: #C0C0C0;
+      background-color: #c0c0c0;
     }
 
     &--black {
@@ -61,31 +60,31 @@
     }
 
     &--white {
-      background-color: #FFF;
+      background-color: #fff;
     }
 
     &--rosegold {
-      background-color: #B76E79;
+      background-color: #b76e79;
     }
 
     &--green {
-      background-color: #34C759;
+      background-color: #34c759;
     }
 
     &--yellow {
-      background-color: #FFD301;
+      background-color: #ffd301;
     }
 
     &--purple {
-      background-color: #5856D6;
+      background-color: #5856d6;
     }
 
     &--red {
-      background-color: #BA0C2F;
+      background-color: #ba0c2f;
     }
 
     &--coral {
-      background-color: #FF5048;
+      background-color: #ff5048;
     }
   }
 

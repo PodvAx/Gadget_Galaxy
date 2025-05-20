@@ -31,8 +31,9 @@
     padding-top: 14px;
     padding-bottom: 13px;
 
-    transition: box-shadow $transitionDuration,
-                text-shadow $transitionDuration;
+    transition:
+      box-shadow $transitionDuration,
+      text-shadow $transitionDuration;
 
     &:hover {
       box-shadow: 0 3px 13px $primaryAccent;

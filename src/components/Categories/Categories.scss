@@ -11,8 +11,9 @@
     grid-column: span 8;
     margin-top: 24px;
 
-    transition: box-shadow $transitionDuration,
-                transform $transitionDuration;
+    transition:
+      box-shadow $transitionDuration,
+      transform $transitionDuration;
 
     &:hover {
       box-shadow: 0 4px 8px $hoverAndBgAccent;

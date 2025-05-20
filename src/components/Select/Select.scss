@@ -23,7 +23,7 @@
 
     transition: border-color $transitionDuration;
 
-    &:hover{
+    &:hover {
       border-color: $secondaryAccent;
     }
 
@@ -45,7 +45,7 @@
     @include bg-and-border($borderColor: $elementsAccent);
 
     padding: 7px 1px;
-    box-shadow: 0 2px 15px 0 #0000000D;
+    box-shadow: 0 2px 15px 0 #0000000d;
 
     position: absolute;
     width: 100%;

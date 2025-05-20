@@ -1,6 +1,6 @@
 @import '../../styles-utils/utils';
 
-.NoSearchResult  {
+.NoSearchResult {
   @include default-flex($direction: column, $justify: center, $align: center);
 
   &__title {

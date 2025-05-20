@@ -1,6 +1,6 @@
 @import '../../styles-utils/utils';
 
-.ProductCard{
+.ProductCard {
   border: 1px solid $elementsAccent;
   padding: 24px 23px;
 
@@ -63,7 +63,7 @@
   }
 
   &__description {
-    @include default-flex($direction:column, $gap: 8px);
+    @include default-flex($direction: column, $gap: 8px);
 
     margin-top: 16px;
   }

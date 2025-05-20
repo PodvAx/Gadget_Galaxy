@@ -95,7 +95,12 @@
   border-bottom: 0;
 }
 
-@mixin default-flex($direction: row, $justify: flex-start, $align: stretch, $gap: 0) {
+@mixin default-flex(
+  $direction: row,
+  $justify: flex-start,
+  $align: stretch,
+  $gap: 0
+) {
   display: flex;
   flex-direction: $direction;
   justify-content: $justify;
@@ -116,8 +121,11 @@
   object-position: center;
 }
 
-
-@mixin bg-and-border($bgColor: $whiteAccent, $borderColor: black, $borderSize: 1px) {
+@mixin bg-and-border(
+  $bgColor: $whiteAccent,
+  $borderColor: black,
+  $borderSize: 1px
+) {
   background-color: $bgColor;
   border: $borderSize solid $borderColor;
 }
