@@ -2,16 +2,59 @@
 
 .Navbar {
   &__list {
-    @include default-flex($align: center, $gap: 64px);
+    @include default-flex($direction: column, $gap: 32px);
 
+    @include on-small-desktop {
+      @include default-flex($align: center, $gap: 64px);
+    }
     list-style: none;
   }
 
   &__link {
     @include uppercase-text;
-    @include nav-link-underline;
+    padding-inline: 24px;
 
-    padding-block: 23px;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background-color: $primaryAccent;
+      transform: scaleY(0);
+      transition: transform $transitionDuration;
+    }
+
+    @include on-hover-device {
+      &:hover::before {
+        transform: scaleY(1);
+      }
+    }
+    @include on-no-hover-device {
+      &:active::before {
+        transform: scaleY(1);
+      }
+    }
+
+    &--active {
+      color: $primaryAccent;
+      &::before {
+        transform: scaleY(1);
+      }
+    }
+
+    @include on-small-desktop {
+      @include nav-link-underline;
+
+      &::before {
+        display: none;
+      }
+      padding-block: 23px;
+      padding-inline: 0;
+    }
     text-decoration: none;
     color: $secondaryAccent;
   }

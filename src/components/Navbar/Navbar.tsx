@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -14,7 +14,12 @@ const links = [
   ['/accessories', 'Accessories'],
 ];
 
-export const Navbar: React.FC = memo(() => {
+type Props = {
+  closeMenu?: () => void;
+  currentPath?: string;
+};
+
+export const Navbar: React.FC<Props> = () => {
   return (
     <nav className="Navbar">
       <ul className="Navbar__list">
@@ -28,4 +33,4 @@ export const Navbar: React.FC = memo(() => {
       </ul>
     </nav>
   );
-});
+};

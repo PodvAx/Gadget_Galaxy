@@ -1,3 +1,32 @@
+@mixin on-tablet {
+  @media (min-width: $tablet-width) {
+    @content;
+  }
+}
+
+@mixin on-small-desktop {
+  @media (min-width: $small-desktop-width) {
+    @content;
+  }
+}
+@mixin on-desktop {
+  @media (min-width: $desktop-width) {
+    @content;
+  }
+}
+
+@mixin on-hover-device {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+
+@mixin on-no-hover-device {
+  @media (hover: none) and (pointer: coarse) {
+    @content;
+  }
+}
+
 @mixin nav-link-underline {
   position: relative;
 
@@ -13,8 +42,16 @@
     transition: transform $transitionDuration;
   }
 
-  &:hover::after {
-    transform: scaleX(1);
+  @include on-hover-device {
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+
+  @include on-no-hover-device {
+    &:active::after {
+      transform: scaleX(1);
+    }
   }
 
   &--active {

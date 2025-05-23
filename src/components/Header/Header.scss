@@ -20,6 +20,16 @@
     @include default-flex($align: center);
   }
 
+  &__btnContainer {
+    @include default-flex($align: center);
+  }
+
+  &__menuBtn {
+    @include on-small-desktop {
+      display: none;
+    }
+  }
+
   &__linkCounter {
     @include default-flex($align: center, $justify: center);
     @include bg-and-border($borderColor: $whiteAccent, $bgColor: $redAccent);
@@ -48,6 +58,8 @@
     text-decoration: none;
     padding: 24px;
     box-shadow: -1px 0 0 $hoverAndBgAccent;
+    background: none;
+    border: none;
   }
 
   &__heart {

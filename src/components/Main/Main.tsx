@@ -7,7 +7,7 @@ import './Main.scss';
 
 export const Main: React.FC = () => {
   return (
-    <main className="Main App__main">
+    <main className="Main">
       <ProductsProvider>
         <Outlet />
       </ProductsProvider>

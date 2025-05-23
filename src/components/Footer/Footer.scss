@@ -1,6 +1,8 @@
 @import '../../styles-utils/utils';
 
 .Footer {
+  margin-top: auto;
+
   &__container {
     @include default-flex($align: center, $justify: space-around);
 

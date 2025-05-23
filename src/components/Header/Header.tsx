@@ -12,13 +12,22 @@ import { Favorites } from '../../utils/Favorites';
 import './Header.scss';
 
 import cartIcon from '../../images/icons/Cart_icon.svg';
+import menuBurgerIcon from '../../images/icons/Menu_Burger_icon.svg';
+import { HeaderBtn } from '../HeaderBtn';
+
+type Props = {
+  openMenu: () => void;
+};
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   classNames('Header__link', { 'Header__link--active': isActive });
 
-export const Header: React.FC = memo(() => {
+export const Header: React.FC<Props> = memo(({ openMenu }) => {
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const [favoritesCount, setFavoritesCount] = useState(0);
+  const [isSmallDesktop, setIsSmallDesktop] = useState(
+    window.innerWidth > 1024,
+  );
 
   const { pathname } = useLocation();
 
@@ -42,6 +51,14 @@ export const Header: React.FC = memo(() => {
       setFavoritesCount(Favorites.getTotalLength());
     };
 
+    const handleResize = () => {
+      setIsSmallDesktop(window.innerWidth > 1024);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
     updateCartItemCount();
     updateFavoritesCount();
 
@@ -51,6 +68,7 @@ export const Header: React.FC = memo(() => {
     return () => {
       Cart.unsubscribe(updateCartItemCount);
       Favorites.unsubscribe(updateFavoritesCount);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -60,7 +78,7 @@ export const Header: React.FC = memo(() => {
         <section className="Header__startBlock">
           <Logo />
 
-          {!isCartPage && <Navbar />}
+          {!isCartPage && isSmallDesktop && <Navbar />}
         </section>
 
         <section className="Header__endBlock">
@@ -90,6 +108,9 @@ export const Header: React.FC = memo(() => {
 
               <img src={cartIcon} alt="Cart" className="Header__icon" />
             </NavLink>
+          </article>
+          <article className="Header__btnContainer Header__menuBtn">
+            <HeaderBtn icon={menuBurgerIcon} iconAlt="Menu" action={openMenu} />
           </article>
         </section>
       </div>

@@ -1,0 +1,17 @@
+@import '../../styles-utils/utils';
+
+.HeaderBtn {
+  @include default-flex($align: center, $justify: center);
+  @include nav-link-underline;
+
+  text-decoration: none;
+  padding: 24px;
+  box-shadow: -1px 0 0 $hoverAndBgAccent;
+  background: none;
+  border: none;
+
+  &__icon {
+    width: 16px;
+    height: 16px;
+  }
+}

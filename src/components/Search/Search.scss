@@ -1,6 +1,10 @@
 @import '../../styles-utils/utils';
 
 .Search {
+  display: none;
+  @include on-small-desktop {
+    display: block;
+  }
   position: relative;
 
   &__input {

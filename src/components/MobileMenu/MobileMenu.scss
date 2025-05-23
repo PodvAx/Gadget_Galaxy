@@ -1,0 +1,64 @@
+@import '../../styles-utils/utils';
+
+.MobileMenu {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: 0.3s;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  height: 100vh;
+
+  @include on-small-desktop {
+    display: none;
+  }
+
+  &--open {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+  }
+
+  &--open &__container {
+    transform: translateX(0);
+  }
+
+  &__container {
+    background-color: white;
+    width: 70%;
+    height: 100%;
+    margin-left: auto;
+    transform: translateX(100%);
+    transition: $transitionDuration;
+  }
+
+  &__linkContainer {
+    @include default-flex($align: center, $justify: flex-end);
+    box-shadow: 0 1px 0 $hoverAndBgAccent;
+    margin-bottom: 32px;
+  }
+
+  &__link {
+    @include default-flex($align: center, $justify: center);
+    @include nav-link-underline;
+
+    text-decoration: none;
+    padding: 24px;
+    box-shadow: -1px 0 0 $hoverAndBgAccent;
+    background: none;
+    border: none;
+  }
+
+  &__icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  &__content {
+    @include default-flex($justify: space-between, $direction: column);
+    height: 100%;
+  }
+}
