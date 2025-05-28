@@ -1,4 +1,9 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from 'body-scroll-lock';
 
 import './MobileMenu.scss';
 import { Navbar } from '../Navbar';
@@ -16,6 +21,7 @@ type Props = {
 
 export const MobileMenu: React.FC<Props> = memo(({ closeMenu, isMenuOpen }) => {
   const location = useLocation();
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const getMenuClass = () =>
     classNames('MobileMenu', { 'MobileMenu--open': isMenuOpen });
@@ -26,8 +32,26 @@ export const MobileMenu: React.FC<Props> = memo(({ closeMenu, isMenuOpen }) => {
     }
   }, [location.pathname]);
 
+  useEffect(() => {
+    const menu = menuRef.current;
+
+    if (isMenuOpen && menu) {
+      disableBodyScroll(menu);
+    } else if (menu) {
+      enableBodyScroll(menu);
+    }
+
+    return () => {
+      if (menu) {
+        enableBodyScroll(menu);
+      }
+
+      clearAllBodyScrollLocks();
+    };
+  }, [isMenuOpen]);
+
   return (
-    <div className={getMenuClass()}>
+    <div ref={menuRef} className={getMenuClass()}>
       <div className="MobileMenu__container">
         <div className="MobileMenu__linkContainer">
           <HeaderBtn icon={crossIcon} iconAlt="Close menu" action={closeMenu} />

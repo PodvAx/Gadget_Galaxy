@@ -6,8 +6,16 @@
 
   transition: border-color $transitionDuration;
 
-  &:hover {
-    border-color: $primaryAccent;
+  @include on-hover-device {
+    &:hover {
+      border-color: $primaryAccent;
+    }
+  }
+
+  @include on-no-hover-device {
+    &:active {
+      border-color: $primaryAccent;
+    }
   }
 
   &__image {
@@ -18,6 +26,7 @@
 
   &__name {
     @include body-text;
+    min-height: 42px;
 
     margin-top: 24px;
   }
@@ -26,13 +35,15 @@
     text-decoration: none;
     color: $primaryAccent;
 
-    &:hover {
-      & .ProductCard__image {
-        transform: scale(1.05);
-      }
+    @include on-hover-device {
+      &:hover {
+        & .ProductCard__image {
+          transform: scale(1.05);
+        }
 
-      & .ProductCard__name {
-        text-decoration: underline;
+        & .ProductCard__name {
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -40,7 +51,7 @@
   &__imgMask {
     width: 208px;
     height: 208px;
-    margin: 8px 8px 0;
+    margin: 0 auto;
     padding: 0 8px;
   }
 

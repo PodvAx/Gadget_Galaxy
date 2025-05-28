@@ -4,9 +4,10 @@
   @include default-flex($align: center);
 
   text-decoration: none;
-  height: 24px;
+  height: 64px;
 
   & img {
+    @include img-full-center;
     transition: transform $transitionDuration;
   }
 

@@ -1,3 +1,5 @@
+@import './utils';
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -29,10 +31,15 @@ input[type='search']::-moz-search-clear {
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 28px;
+  line-height: 37px;
   font-weight: 700;
-  line-height: 41px;
   letter-spacing: -0.01em;
+
+  @include on-tablet {
+    font-size: 32px;
+    line-height: 41px;
+  }
 }
 
 h2 {

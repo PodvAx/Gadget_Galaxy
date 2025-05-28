@@ -1,11 +1,23 @@
 @import '../../styles-utils/utils';
 
 .Main {
-  margin-inline: 152px;
+  @include on-small-desktop {
+    width: 90%;
+    margin-inline: auto;
+  }
+
+  @include on-desktop {
+    width: 80%;
+  }
 
   &__homePage {
-    margin-top: 40px;
-    margin-bottom: 80px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+
+    @include on-small-desktop {
+      margin-top: 40px;
+      margin-bottom: 80px;
+    }
   }
 
   &__productDetailsPage {
@@ -28,15 +40,42 @@
   }
 
   &__hotPrices {
-    margin-top: 72px;
+    margin-top: 40px;
+    margin-inline: 24px;
+
+    @include on-tablet {
+      margin-inline: 64px;
+    }
+
+    @include on-small-desktop {
+      margin-top: 72px;
+      margin-inline: 0;
+    }
   }
 
   &__categories {
     margin-top: 80px;
+    margin-inline: 24px;
+
+    @include on-tablet {
+      margin-inline: 64px;
+    }
+
+    @include on-small-desktop {
+      margin-inline: 0;
+    }
   }
 
   &__newModels {
     margin-top: 80px;
+    margin-inline: 24px;
+
+    @include on-tablet {
+      margin-inline: 64px;
+    }
+    @include on-small-desktop {
+      margin-inline: 0;
+    }
   }
 
   &__suggestedModels {

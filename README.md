@@ -26,7 +26,7 @@ The data for the products were obtained from [API LINK](https://mate-academy.git
 
 ## Installation Instructions
 
-!!!ALERT!!! Requires Node.js v14.
+⚠️ **ALERT:** Requires Node.js v14.
 
 1. Clone the repository
 2. Install dependencies using `npm install`

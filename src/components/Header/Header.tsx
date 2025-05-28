@@ -26,8 +26,10 @@ export const Header: React.FC<Props> = memo(({ openMenu }) => {
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const [favoritesCount, setFavoritesCount] = useState(0);
   const [isSmallDesktop, setIsSmallDesktop] = useState(
-    window.innerWidth > 1024,
+    window.innerWidth >= 1024,
   );
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(window.scrollY);
 
   const { pathname } = useLocation();
 
@@ -52,7 +54,7 @@ export const Header: React.FC<Props> = memo(({ openMenu }) => {
     };
 
     const handleResize = () => {
-      setIsSmallDesktop(window.innerWidth > 1024);
+      setIsSmallDesktop(window.innerWidth >= 1024);
     };
 
     window.addEventListener('resize', handleResize);
@@ -72,8 +74,35 @@ export const Header: React.FC<Props> = memo(({ openMenu }) => {
     };
   }, []);
 
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.scrollY > lastScrollY && window.scrollY > 50) {
+            setShowHeader(false); // скрол вниз — ховаємо
+          } else {
+            setShowHeader(true); // скрол вгору — показуємо
+          }
+
+          setLastScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <header className="Header" id="top">
+    <header
+      className={classNames('Header', { 'Header--hidden': !showHeader })}
+      id="top"
+    >
       <div className="Header__container">
         <section className="Header__startBlock">
           <Logo />

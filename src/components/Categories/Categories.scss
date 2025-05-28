@@ -8,16 +8,37 @@
   }
 
   &__card {
-    grid-column: span 8;
+    grid-column: 1 / -1;
     margin-top: 24px;
+
+    @include on-tablet {
+      grid-column: span 2;
+    }
+
+    @include on-small-desktop {
+      grid-column: span 4;
+    }
+
+    @include on-desktop {
+      grid-column: span 8;
+    }
 
     transition:
       box-shadow $transitionDuration,
       transform $transitionDuration;
 
-    &:hover {
-      box-shadow: 0 4px 8px $hoverAndBgAccent;
-      transform: scale(0.95);
+    @include on-hover-device {
+      &:hover {
+        box-shadow: 0 4px 8px $hoverAndBgAccent;
+        transform: scale(0.95);
+      }
+    }
+
+    @include on-no-hover-device {
+      &:active {
+        box-shadow: 0 4px 8px $hoverAndBgAccent;
+        transform: scale(0.95);
+      }
     }
   }
 }

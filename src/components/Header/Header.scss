@@ -1,6 +1,16 @@
 @import '../../styles-utils/utils';
 
 .Header {
+  position: sticky;
+  top: 0;
+  transform: translateY(0);
+  transition: transform 0.3s;
+  z-index: 100;
+  background-color: white;
+  &--hidden {
+    transform: translateY(-100%);
+  }
+
   &__container {
     @include default-flex($align: center, $justify: space-between);
 

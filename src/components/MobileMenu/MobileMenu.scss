@@ -1,9 +1,9 @@
 @import '../../styles-utils/utils';
 
 .MobileMenu {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 102;
   background-color: rgba(0, 0, 0, 0.4);
   transition: 0.3s;
   overflow: hidden;
@@ -33,6 +33,7 @@
     margin-left: auto;
     transform: translateX(100%);
     transition: $transitionDuration;
+    overflow-y: auto;
   }
 
   &__linkContainer {

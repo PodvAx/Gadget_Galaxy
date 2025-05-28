@@ -50,10 +50,10 @@ export const ProductsSection: React.FC<Props> = memo(
         <h1 className="ProductsSection__title">{title}</h1>
 
         {isProductsFound && (
-          <>
+          <div className="ProductsSection__buttons">
             <SliderBtn direction="prev" section={sectionName} />
             <SliderBtn direction="next" section={sectionName} />
-          </>
+          </div>
         )}
 
         <div className="ProductsSection__swiper">

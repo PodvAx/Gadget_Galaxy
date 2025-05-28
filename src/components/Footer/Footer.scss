@@ -4,27 +4,18 @@
   margin-top: auto;
 
   &__container {
-    @include default-flex($align: center, $justify: space-around);
+    @include default-flex(
+      $direction: column,
+      $align: center,
+      $justify: space-around
+    );
+    padding-top: 24px;
+
+    @include on-tablet {
+      flex-direction: row;
+    }
 
     box-shadow: 0 -1px 0 0 #e2e6e9;
-  }
-
-  &__links {
-    @include default-flex($align: center, $gap: 64px);
-  }
-
-  &__link {
-    @include uppercase-text;
-
-    text-decoration: none;
-    color: $secondaryAccent;
-    padding: 43px 0 42px;
-
-    transition: color $transitionDuration;
-
-    &:hover {
-      color: $primaryAccent;
-    }
   }
 
   &__backToTopBtn {
@@ -36,21 +27,80 @@
   }
 
   &__backToTop {
+    bottom: 16px;
+    right: -1px;
+
+    @include on-tablet {
+      bottom: 32px;
+    }
+
+    @include on-small-desktop {
+      left: 87%;
+    }
+
+    display: none;
+    position: fixed;
+    transition:
+      opacity $transitionDuration,
+      transform $transitionDuration;
+    opacity: 0;
+    transform: translateX(100%);
+    z-index: 101;
     @include default-flex($align: center);
 
-    text-decoration: none;
+    border: none;
+    background: none;
 
-    &:hover {
-      & .Footer__backToTopBtn {
-        border-color: $primaryAccent;
+    @include on-hover-device {
+      &:hover {
+        & .Footer__backToTopBtn {
+          border-color: $primaryAccent;
+        }
+
+        & .Footer__backToTopName {
+          color: $primaryAccent;
+          background-color: white;
+        }
       }
+    }
+    @include on-no-hover-device {
+      &:active {
+        & .Footer__backToTopBtn {
+          border-color: $primaryAccent;
+        }
+
+        & .Footer__backToTopName {
+          color: $primaryAccent;
+        }
+      }
+    }
+
+    &--visible {
+      display: flex;
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 
   &__backToTopName {
     @include small-text;
 
-    padding: 9px 16px 8px 0;
+    padding: 8px 16px 7px 0;
     color: $secondaryAccent;
+    transition:
+      color $transitionDuration,
+      background-color $transitionDuration;
+  }
+
+  &__empty {
+    margin-bottom: 32px;
+
+    @include on-desktop {
+      margin-bottom: 0;
+    }
+    display: block;
+    width: 70px;
+    height: 1px;
+    background-color: #fff;
   }
 }

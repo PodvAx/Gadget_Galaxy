@@ -18,9 +18,18 @@
       box-shadow $transitionDuration,
       text-shadow $transitionDuration;
 
-    &:hover {
-      box-shadow: 0 3px 13px $primaryAccent;
-      text-shadow: 0 3px 13px $hoverAndBgAccent;
+    @include on-hover-device {
+      &:hover {
+        box-shadow: 0 3px 13px $primaryAccent;
+        text-shadow: 0 3px 13px $hoverAndBgAccent;
+      }
+    }
+
+    @include on-no-hover-device {
+      &:active {
+        box-shadow: 0 3px 13px $primaryAccent;
+        text-shadow: 0 3px 13px $hoverAndBgAccent;
+      }
     }
 
     &--added {

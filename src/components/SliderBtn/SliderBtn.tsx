@@ -16,7 +16,7 @@ export const SliderBtn: React.FC<Props> = memo(({ direction, section }) => {
 
   return (
     <button
-      className={`${section}__button--${direction} SliderBtn SliderBtn--${section}`}
+      className={`${section}__button ${section}__button--${direction} SliderBtn SliderBtn--${section}`}
       type="button"
       aria-label={ariaLabel}
     >

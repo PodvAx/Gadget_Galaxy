@@ -1,7 +1,11 @@
 @import '../../styles-utils/utils';
 .InfoLinks {
   &--footer {
-    @include default-flex($align: center, $gap: 64px);
+    @include default-flex($align: center, $gap: 32px, $justify: center);
+
+    @include on-tablet {
+      gap: 64px;
+    }
   }
 
   &--menu {
@@ -18,6 +22,7 @@
 
     text-decoration: none;
     color: $secondaryAccent;
+
     padding: 43px 0 42px;
 
     transition: color $transitionDuration;

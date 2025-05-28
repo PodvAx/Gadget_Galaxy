@@ -16,13 +16,13 @@
 }
 
 @mixin on-hover-device {
-  @media (hover: hover) and (pointer: fine) {
+  @media (hover: hover) {
     @content;
   }
 }
 
 @mixin on-no-hover-device {
-  @media (hover: none) and (pointer: coarse) {
+  @media (hover: none) {
     @content;
   }
 }
@@ -68,11 +68,19 @@
 
   width: 32px;
   height: 32px;
+  color: $primaryAccent;
+
+  &--disabled {
+    pointer-events: none;
+    color: $elementsAccent;
+  }
 
   transition: border-color $transitionDuration;
 
-  &:hover {
-    border-color: $primaryAccent;
+  @include on-hover-device() {
+    &:hover {
+      border-color: $primaryAccent;
+    }
   }
 
   &:active {
@@ -147,8 +155,21 @@
 
 @mixin default-grid-template($columns: 24, $gap: 16px) {
   display: grid;
-  grid-template-columns: repeat($columns, 1fr);
   column-gap: $gap;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  @include on-tablet() {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @include on-small-desktop() {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  @include on-desktop() {
+    grid-template-columns: repeat($columns, 1fr);
+  }
 }
 
 @mixin img-full-center($fit: contain) {
