@@ -4,15 +4,22 @@
   &__count {
     @include body-text;
 
-    margin-top: 8px;
+    @include on-small-desktop {
+      margin-top: 8px;
+    }
+
     color: $secondaryAccent;
   }
 
   &__options {
-    display: grid;
-    grid-template-columns: repeat(24, 1fr);
-    column-gap: 16px;
-    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+
+    margin-top: 24px;
+
+    @include on-small-desktop {
+      margin-top: 40px;
+    }
   }
 
   &__optionsBlock {
@@ -21,11 +28,19 @@
     gap: 4px;
 
     &--sortBy {
-      grid-column: span 4;
+      width: 60%;
+
+      @include on-tablet {
+        width: 30%;
+      }
     }
 
     &--itemsOnPage {
-      grid-column: span 3;
+      width: 40%;
+
+      @include on-tablet {
+        width: 20%;
+      }
     }
   }
 
@@ -35,25 +50,12 @@
     color: $secondaryAccent;
   }
 
-  &__optionSelect {
-    @include button-text;
-
-    appearance: none;
-    padding: 10px 12px;
-    border-radius: 0;
-    border: 1px solid $iconsAccent;
-
-    &--sortBy {
-      width: 176px;
-    }
-
-    &--perPage {
-      width: 128px;
-    }
-  }
-
   &__list {
-    margin-top: 24px;
+    margin-top: 40px;
+
+    @include on-small-desktop {
+      margin-top: 24px;
+    }
   }
 
   &__pagination {

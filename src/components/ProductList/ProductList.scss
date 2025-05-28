@@ -3,10 +3,26 @@
 .ProductList {
   @include default-grid-template;
 
-  row-gap: 40px;
+  row-gap: 20px;
   list-style: none;
 
+  @include on-tablet {
+    row-gap: 40px;
+  }
+
   &__item {
-    grid-column: span 6;
+    grid-column: span 2;
+
+    @include on-tablet {
+      grid-column: span 3;
+    }
+
+    @include on-small-desktop {
+      grid-column: span 4;
+    }
+
+    @include on-desktop {
+      grid-column: span 6;
+    }
   }
 }

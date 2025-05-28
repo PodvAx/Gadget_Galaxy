@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import classNames from 'classnames';
 
-import { getNumbers } from '../../utils/helpers';
+import { getPaginationRange } from '../../utils/helpers';
 
 import './Pagination.scss';
 
@@ -14,9 +14,50 @@ type Props = {
 
 export const Pagination: React.FC<Props> = memo(
   ({ total, perPage, currentPage, onPageChange }) => {
+    const [siblingCount, setSiblingCount] = useState(1);
     const pagesCount = Math.ceil(total / perPage);
 
-    const pages = getNumbers(1, pagesCount);
+    useEffect(() => {
+      const handleResize = () => {
+        if (window.innerWidth < 375) {
+          setSiblingCount(0);
+        } else if (window.innerWidth < 768) {
+          setSiblingCount(1);
+        } else if (window.innerWidth < 1024) {
+          setSiblingCount(3);
+        } else if (window.innerWidth < 1440) {
+          setSiblingCount(4);
+        } else {
+          setSiblingCount(5);
+        }
+      };
+
+      handleResize();
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+
+    // const pages = getNumbers(1, pagesCount);
+    const paginationRange = getPaginationRange(
+      pagesCount,
+      currentPage,
+      siblingCount,
+    );
+
+    const onPrev = () => {
+      if (currentPage > 1) {
+        onPageChange(currentPage - 1);
+      }
+    };
+
+    const onNext = () => {
+      if (currentPage < pagesCount) {
+        onPageChange(currentPage + 1);
+      }
+    };
 
     return (
       <nav className="Pagination" data-cy="pagination">
@@ -26,13 +67,13 @@ export const Pagination: React.FC<Props> = memo(
             'Pagination__button--disabled': currentPage === 1,
           })}
           aria-label="Prev slide"
-          onClick={() => onPageChange(currentPage - 1)}
+          onClick={onPrev}
           data-cy="paginationLeft"
         >
           <i className="fas fa-chevron-left Pagination__chevron" />
         </button>
         <ul className="Pagination__list">
-          {pages.map(pageNumber => (
+          {/* {pages.map(pageNumber => (
             <li key={pageNumber}>
               <button
                 type="button"
@@ -48,6 +89,24 @@ export const Pagination: React.FC<Props> = memo(
                 {pageNumber}
               </button>
             </li>
+          ))} */}
+          {paginationRange.map((item, idx) => (
+            <li key={idx}>
+              {item === '...' ? (
+                <span className="Pagination__dots">...</span>
+              ) : (
+                <button
+                  type="button"
+                  className={classNames('Pagination__button', {
+                    'Pagination__button--active': item === currentPage,
+                  })}
+                  onClick={() => onPageChange(Number(item))}
+                  disabled={item === currentPage}
+                >
+                  {item}
+                </button>
+              )}
+            </li>
           ))}
         </ul>
         <button
@@ -56,7 +115,7 @@ export const Pagination: React.FC<Props> = memo(
             'Pagination__button--disabled': currentPage === pagesCount,
           })}
           aria-label="Next slide"
-          onClick={() => onPageChange(currentPage + 1)}
+          onClick={onNext}
           data-cy="paginationRight"
         >
           <i className="fas fa-chevron-right Pagination__chevron" />

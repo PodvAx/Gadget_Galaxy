@@ -75,6 +75,10 @@ export const ProductsCatalog: React.FC<Props> = memo(({ products }) => {
     onFirstRender();
   }, [onFirstRender]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
+
   const filteredProducts = useMemo(() => {
     if (searchQuery.length) {
       setIsFiltering(true);
@@ -106,7 +110,6 @@ export const ProductsCatalog: React.FC<Props> = memo(({ products }) => {
 
   const handlePageChange = useCallback(
     (page: Param) => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
       setSearchWith({ page });
     },
     [setSearchWith],
