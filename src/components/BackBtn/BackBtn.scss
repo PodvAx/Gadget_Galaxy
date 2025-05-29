@@ -13,9 +13,16 @@
     transition: color $transitionDuration;
   }
 
-  &:hover {
-    .BackBtn__name {
+  @include on-hover-device() {
+    &:hover .BackBtn__name {
       color: $primaryAccent;
+      text-decoration: underline;
+    }
+  }
+  @include on-no-hover-device() {
+    &:active .BackBtn__name {
+      color: $primaryAccent;
+
       text-decoration: underline;
     }
   }

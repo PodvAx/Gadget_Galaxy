@@ -2,17 +2,21 @@
 
 .CartCard {
   @include bg-and-border($borderColor: $elementsAccent);
-  @include default-grid-template($columns: 16, $gap: 24px);
-
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(2, auto);
   align-items: center;
-  padding: 24px 40px 24px 24px;
+  row-gap: 24px;
 
-  &__startBlock {
-    @include default-flex($align: center, $gap: 24px);
+  padding: 12px 8px 12px 8px;
+
+  @include on-tablet {
+    padding-block: 24px;
   }
 
-  &__endBlock {
-    @include default-flex($align: center, $gap: 43px);
+  &__link {
+    text-decoration: none;
+    color: $primaryAccent;
   }
 
   &__icon {
@@ -23,43 +27,96 @@
   }
 
   &__deleteBtn {
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
+    justify-self: center;
+
     @include bg-and-border($borderSize: 0);
     @include default-flex($align: center, $justify: center);
-
-    grid-column: 1 / 2;
 
     width: 16px;
     height: 16px;
 
-    &:hover .CartCard__icon {
-      color: $primaryAccent;
+    @include on-hover-device {
+      &:hover .CartCard__icon {
+        color: $primaryAccent;
+      }
+    }
+
+    @include on-no-hover-device {
+      &:active .CartCard__icon {
+        color: $primaryAccent;
+      }
     }
   }
 
   &__imageBlock {
-    grid-column: 2 / 4;
+    grid-column: 2 / 6;
+    grid-row: 1 / 2;
+
+    @include on-tablet {
+      grid-column: 2 / 4;
+    }
+
+    @include default-flex($align: center, $justify: center);
+    overflow: hidden;
 
     height: 80px;
-    width: 80px;
     padding: 7px;
+
+    @include on-hover-device {
+      &:hover .CartCard__image {
+        transform: scale(1.1);
+      }
+    }
+
+    @include on-no-hover-device {
+      &:active .CartCard__image {
+        transform: scale(0.9);
+      }
+    }
   }
 
   &__image {
     @include img-full-center;
+    transition: transform $transitionDuration;
   }
 
   &__name {
-    grid-column: 4 / 12;
+    grid-column: 6 / -1;
+    grid-row: 1 / 2;
+
+    @include on-tablet {
+      grid-column: 4 / 8;
+    }
+
+    @include on-small-desktop {
+      grid-column: 4 / 9;
+    }
 
     @include body-text;
 
-    width: 295px;
+    @include on-hover-device {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    @include on-no-hover-device {
+      &:active {
+        text-decoration: underline;
+      }
+    }
   }
 
   &__quantityBlock {
-    grid-column: 12 / 15;
+    grid-column: 2 / 6;
+    grid-row: 2 / -1;
 
-    @include default-flex($align: center, $gap: 14px);
+    @include on-tablet {
+      grid-column: 2 / 4;
+    }
+
+    @include default-flex($align: center, $gap: 14px, $justify: center);
   }
 
   &__quantityBtn {
@@ -77,6 +134,14 @@
   }
 
   &__price {
-    grid-column: 15 / -1;
+    grid-column: 6 / -1;
+    grid-row: 2 / -1;
+    justify-self: center;
+
+    @include on-tablet {
+      grid-column: 9 / -1;
+      grid-row: 1 / 2;
+      justify-self: start;
+    }
   }
 }

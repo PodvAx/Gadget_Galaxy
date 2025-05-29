@@ -3,13 +3,31 @@
 .CartInfo {
   @include default-grid-template;
 
+  row-gap: 40px;
+
   margin-top: 24px;
 
   &__cartList {
-    grid-column: span 16;
+    grid-column: 1 / -1;
+
+    @include on-small-desktop {
+      grid-column: span 8;
+    }
+
+    @include on-desktop {
+      grid-column: span 16;
+    }
   }
 
   &__cartActions {
-    grid-column: span 8;
+    grid-column: 1 / -1;
+
+    @include on-small-desktop {
+      grid-column: span 4;
+    }
+
+    @include on-desktop {
+      grid-column: span 8;
+    }
   }
 }

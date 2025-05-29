@@ -5,6 +5,7 @@ import { Cart, CartItem } from '../../utils/Cart';
 
 import './CartCard.scss';
 import { API_URL } from '../../utils/api';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 type Props = {
   item: CartItem;
@@ -14,8 +15,12 @@ const MAX_QUANTITY = 10;
 const MIN_QUANTITY = 1;
 
 export const CartCard: React.FC<Props> = memo(({ item }) => {
-  const { image, name, price } = item.product;
+  const [searchParams] = useSearchParams();
+  const { pathname } = useLocation();
+  const { image, name, price, category, itemId } = item.product;
   const { quantity, id } = item;
+
+  const link = `/${category}/:${itemId}`;
 
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
 
@@ -44,6 +49,7 @@ export const CartCard: React.FC<Props> = memo(({ item }) => {
 
   return (
     <div className="CartCard">
+      {/* <div className="CartCard__startBlock"> */}
       <button
         type="button"
         className="CartCard__deleteBtn"
@@ -54,20 +60,30 @@ export const CartCard: React.FC<Props> = memo(({ item }) => {
         <i className="fas fa-xmark CartCard__icon" />
       </button>
 
-      <div className="CartCard__imageBlock">
+      <Link
+        to={link}
+        className="CartCard__imageBlock CartCard__link"
+        state={{ search: searchParams.toString(), prevPathname: pathname }}
+      >
         <img
           className="CartCard__image"
           src={`${API_URL}/${image}`}
           alt={name}
         />
-      </div>
+      </Link>
 
-      <p className="CartCard__name">
+      <Link
+        className="CartCard__name CartCard__link"
+        to={link}
+        state={{ search: searchParams.toString(), prevPathname: pathname }}
+      >
         {name}
         <br />
         (iMT9G2FS/A)
-      </p>
+      </Link>
+      {/* </div> */}
 
+      {/* <div className="CartCard__endBlock"> */}
       <div className="CartCard__quantityBlock">
         <button
           type="button"
@@ -94,7 +110,8 @@ export const CartCard: React.FC<Props> = memo(({ item }) => {
         </button>
       </div>
 
-      <h2 className="CartCard__price">${price}</h2>
+      <h2 className="CartCard__price">${quantity * price}</h2>
+      {/* </div> */}
     </div>
   );
 });

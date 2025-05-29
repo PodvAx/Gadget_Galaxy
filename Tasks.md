@@ -3,8 +3,8 @@
 - [ ] Make deal with search on mobile, tablet.
 - [ ] Make deal with main for mobile:
   - [x] ~~Make deal with home page;~~
-  - [ ] Make deal with cartPage;
-  - [ ] Make deal with FavouritesPage;
+  - [x] ~~Make deal with cartPage;~~
+  - [x] ~~Make deal with FavouritesPage;~~
   - [ ] Make deal with ProductDetailsPage;
   - [x] ~~Make deal with ProductPage;~~
 - [x] ~~Make deal with footer for mobile:~~

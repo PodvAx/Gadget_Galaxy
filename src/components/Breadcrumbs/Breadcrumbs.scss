@@ -16,8 +16,16 @@
       transition: transform $transitionDuration;
     }
 
-    &:hover .Breadcrumbs__icon {
-      transform: scale(1.1);
+    @include on-hover-device {
+      &:hover .Breadcrumbs__icon {
+        transform: scale(1.1);
+      }
+    }
+
+    @include on-no-hover-device {
+      &:active .Breadcrumbs__icon {
+        transform: scale(0.9);
+      }
     }
   }
 
