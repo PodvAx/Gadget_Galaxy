@@ -13,13 +13,15 @@
     width: 100%;
     padding-right: 40px;
     padding-left: 20px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     line-height: 17.89px;
     height: 64px;
     box-shadow: -1px 0 0 $hoverAndBgAccent;
     color: $primaryAccent;
     border: 1px solid $hoverAndBgAccent;
+    background: $whiteAccent;
+    border-radius: 0px;
     @include on-desktop {
       border: none;
     }

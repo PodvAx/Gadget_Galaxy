@@ -4,6 +4,7 @@
   @include default-flex($align: center);
 
   text-decoration: none;
+  width: 64px;
   height: 64px;
 
   & img {
