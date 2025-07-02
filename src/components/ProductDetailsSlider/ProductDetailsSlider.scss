@@ -4,11 +4,31 @@
   @include default-grid-template($columns: 12);
 
   &__swiper {
-    grid-column: 3 / -1;
+    grid-column: 1 / -1;
+    grid-row: 1;
+    height: 240px;
+    margin-top: 24px;
+
+    @include on-tablet {
+      grid-column: 2 / -1;
+      height: 364px;
+      margin-top: 0;
+    }
+
+    @include on-small-desktop {
+      grid-column: 3 / -1;
+      height: 464px;
+      margin-top: 0;
+    }
+
+    @include on-desktop {
+      grid-column: 3 / -1;
+      height: 464px;
+      margin-top: 0;
+    }
 
     overflow: hidden;
     width: 100%;
-    height: 464px;
   }
 
   &__picture {
@@ -16,16 +36,52 @@
   }
 
   &__pagination {
-    @include default-flex($direction: column, $gap: 16px);
+    @include default-flex($direction: row, $gap: 8px);
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: 12px;
 
-    grid-column: 1 / 3;
+    @include on-tablet {
+      grid-column: 1 / 2;
+      grid-row: 1;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 0;
+    }
+
+    @include on-small-desktop {
+      grid-column: 1 / 3;
+      grid-row: 1;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 0;
+    }
+
+    @include on-desktop {
+      flex-direction: column;
+      gap: 16px;
+      grid-row: 1;
+      grid-column: 1 / 3;
+      margin-top: 0;
+    }
   }
 
   &__paginationButton {
+    height: 50px;
+    padding: 1px;
+
+    @include on-tablet {
+      height: 60px;
+      padding: 3px;
+    }
+
+    @include on-small-desktop {
+      height: 80px;
+      padding: 7px;
+    }
+
     width: 100%;
-    height: 80px;
     border: 1px solid $elementsAccent;
-    padding: 7px;
     cursor: pointer;
 
     transition: border-color $transitionDuration;
@@ -34,8 +90,16 @@
       border-color: $primaryAccent;
     }
 
-    &:hover {
-      border-color: $primaryAccent;
+    @include on-hover-device {
+      &:hover {
+        border-color: $primaryAccent;
+      }
+    }
+
+    @include on-no-hover-device {
+      &:active {
+        border-color: $primaryAccent;
+      }
     }
   }
 

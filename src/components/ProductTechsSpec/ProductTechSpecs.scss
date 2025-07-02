@@ -4,13 +4,21 @@
   &__divider {
     @include divider;
 
-    margin-top: 16px;
+    margin-top: 8px;
+
+    @include on-desktop {
+      margin-top: 16px;
+    }
   }
 
   &__specsBlock {
     @include default-flex($direction: column, $gap: 8px);
 
-    margin-top: 25px;
+    margin-top: 16px;
+
+    @include on-desktop {
+      margin-top: 25px;
+    }
   }
 
   &__spec {

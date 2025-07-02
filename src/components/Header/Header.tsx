@@ -28,6 +28,7 @@ export const Header: React.FC<Props> = memo(({ openMenu }) => {
   const [isSmallDesktop, setIsSmallDesktop] = useState(
     window.innerWidth >= 1024,
   );
+  const [isBigDesktop, setIsBigDesktop] = useState(window.innerWidth >= 1440);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(window.scrollY);
 
@@ -35,7 +36,7 @@ export const Header: React.FC<Props> = memo(({ openMenu }) => {
 
   const isSearchShown = useMemo(
     () =>
-      ['/phones', '/tablets', '/accessories', '/favorites'].includes(pathname),
+      ['/phones', '/tablets', '/accessories', '/favourites'].includes(pathname),
     [pathname],
   );
 
@@ -55,6 +56,7 @@ export const Header: React.FC<Props> = memo(({ openMenu }) => {
 
     const handleResize = () => {
       setIsSmallDesktop(window.innerWidth >= 1024);
+      setIsBigDesktop(window.innerWidth >= 1440);
     };
 
     window.addEventListener('resize', handleResize);
@@ -111,7 +113,9 @@ export const Header: React.FC<Props> = memo(({ openMenu }) => {
         </section>
 
         <section className="Header__endBlock">
-          {isSearchShown && <Search category={pathname.slice(1)} />}
+          {isSearchShown && isBigDesktop && (
+            <Search category={pathname.slice(1)} />
+          )}
 
           {!isCartPage && (
             <article className="Header__linkContainer">

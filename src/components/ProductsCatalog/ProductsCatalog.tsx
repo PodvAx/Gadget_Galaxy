@@ -16,6 +16,7 @@ import { Product } from '../../types/Product';
 
 import './ProductsCatalog.scss';
 import { Loader } from '../Loader';
+import { Search } from '../Search';
 
 type Props = {
   products: Product[];
@@ -38,6 +39,7 @@ export const ProductsCatalog: React.FC<Props> = memo(({ products }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { pathname } = useLocation();
   const [isFiltering, setIsFiltering] = useState(false);
+  const [isSmallWindow, setIsSmallWindow] = useState(window.innerWidth < 1440);
 
   const isFavouritesPage = useMemo(
     () => pathname === '/favourites',
@@ -79,18 +81,43 @@ export const ProductsCatalog: React.FC<Props> = memo(({ products }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentPage]);
 
-  const filteredProducts = useMemo(() => {
-    if (searchQuery.length) {
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallWindow(window.innerWidth < 1440);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (searchQuery.length > 0) {
       setIsFiltering(true);
-      setTimeout(() => setIsFiltering(false), 1000);
+    } else {
+      setIsFiltering(false);
     }
 
+    const timeout = setTimeout(() => {
+      setIsFiltering(false);
+    }, 500);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [searchQuery]);
+
+  const filteredProducts = useMemo(() => {
     return getFilteredProducts({
       productsToFilter: products,
       sortBy,
       searchQuery,
     });
   }, [products, sortBy, searchQuery]);
+
+  console.log('filteredProducts', filteredProducts);
 
   const slicedProducts = useMemo(() => {
     if (perPage === 'all') {
@@ -102,6 +129,8 @@ export const ProductsCatalog: React.FC<Props> = memo(({ products }) => {
 
     return filteredProducts.slice(start, end);
   }, [filteredProducts, perPage, currentPage]);
+
+  // console.log('slicedProducts', slicedProducts);
 
   const isPaginationVisible = useMemo(
     () => perPage !== 'all' && filteredProducts.length > +perPage,
@@ -134,69 +163,80 @@ export const ProductsCatalog: React.FC<Props> = memo(({ products }) => {
     [slicedProducts],
   );
 
-  if (!isSearchResult && !isFiltering) {
-    return <NoSearchResult />;
-  }
+  const isNoSearchProducts = !isFiltering && !isSearchResult;
+  const isSearchProducts = !isFiltering && isSearchResult;
 
-  return !isFiltering && isSearchResult ? (
+  return (
     <section className="ProductsCatalog">
       <div className="ProductsCatalog__count">
         {!!searchQuery.length && `${filteredProducts.length} results of `}
         {products.length} models
       </div>
 
-      {!isFavouritesPage && (
-        <section className="ProductsCatalog__options">
-          <article
-            className="
+      {isSmallWindow && (
+        <div className="ProductsCatalog__search">
+          <Search category={pathname.slice(1)} />
+        </div>
+      )}
+
+      {isFiltering && <Loader />}
+
+      {isNoSearchProducts && <NoSearchResult />}
+
+      {isSearchProducts && (
+        <>
+          {!isFavouritesPage && (
+            <section className="ProductsCatalog__options">
+              <article
+                className="
           ProductsCatalog__optionsBlock
           ProductsCatalog__optionsBlock--sortBy
           "
-          >
-            <p className="ProductsCatalog__optionLabel">Sort by</p>
+              >
+                <p className="ProductsCatalog__optionLabel">Sort by</p>
 
-            <Select
-              options={sortByOptions}
-              selectedValue={sortBy}
-              idOfSelect="sortBy"
-              onSelect={handleSortBySelect}
-            />
-          </article>
+                <Select
+                  options={sortByOptions}
+                  selectedValue={sortBy}
+                  idOfSelect="sortBy"
+                  onSelect={handleSortBySelect}
+                />
+              </article>
 
-          <article
-            className="
-          ProductsCatalog__optionsBlock
-          ProductsCatalog__optionsBlock--itemsOnPage
-          "
-          >
-            <p className="ProductsCatalog__optionLabel">Items on page</p>
+              <article
+                className="
+                  ProductsCatalog__optionsBlock
+                  ProductsCatalog__optionsBlock--itemsOnPage
+                  "
+              >
+                <p className="ProductsCatalog__optionLabel">Items on page</p>
 
-            <Select
-              options={perPageOptions}
-              selectedValue={perPage}
-              idOfSelect="itemsOnPage"
-              onSelect={handlePerPageSelect}
-            />
-          </article>
-        </section>
-      )}
+                <Select
+                  options={perPageOptions}
+                  selectedValue={perPage}
+                  idOfSelect="itemsOnPage"
+                  onSelect={handlePerPageSelect}
+                />
+              </article>
+            </section>
+          )}
 
-      <section className="ProductsCatalog__list">
-        <ProductList products={slicedProducts} />
-      </section>
+          <section className="ProductsCatalog__list">
+            <ProductList products={slicedProducts} />
+          </section>
 
-      {isPaginationVisible && (
-        <section className="ProductsCatalog__pagination">
-          <Pagination
-            total={filteredProducts.length}
-            perPage={+perPage}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
-        </section>
+          {isPaginationVisible && (
+            <section className="ProductsCatalog__pagination">
+              <Pagination
+                total={filteredProducts.length}
+                perPage={+perPage}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+              />
+            </section>
+          )}
+        </>
       )}
     </section>
-  ) : (
-    <Loader />
   );
 });

@@ -1,7 +1,13 @@
 @import '../../styles-utils/utils';
 
 .ProductSelection {
-  @include default-flex($direction: column, $gap: 24px);
+  @include default-flex($direction: column, $gap: 12px);
+  @include on-tablet {
+    gap: 24px;
+  }
+  // @include on-desktop {
+  //   gap: 24px;
+  // }
 
   &__subhead {
     @include small-text;
@@ -9,10 +15,23 @@
     color: $secondaryAccent;
   }
 
+  &__block {
+    @include default-flex($direction: column, $gap: 8px);
+
+    @include on-tablet {
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+    }
+
+    @include on-small-desktop {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
   &__optionsBlock {
     @include default-flex($gap: 8px);
-
-    margin-top: 8px;
   }
 
   &__colorSelect {
@@ -24,8 +43,15 @@
 
     transition: border-color $transitionDuration;
 
-    &:hover {
-      border-color: $primaryAccent;
+    @include on-hover-device {
+      &:hover {
+        border-color: $primaryAccent;
+      }
+    }
+    @include on-no-hover-device {
+      &:active {
+        border-color: $primaryAccent;
+      }
     }
 
     &--active {
@@ -103,8 +129,15 @@
 
     transition: border-color $transitionDuration;
 
-    &:hover {
-      border-color: $primaryAccent;
+    @include on-hover-device {
+      &:hover {
+        border-color: $primaryAccent;
+      }
+    }
+    @include on-no-hover-device {
+      &:active {
+        border-color: $primaryAccent;
+      }
     }
 
     &--active {

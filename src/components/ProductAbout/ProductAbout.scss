@@ -4,17 +4,26 @@
   &__divider {
     @include divider;
 
-    margin-top: 16px;
+    margin-top: 8px;
+
+    @include on-desktop {
+      margin-top: 16px;
+    }
   }
 
   &__article {
-    margin-top: 32px;
+    margin-top: 16px;
+    @include on-desktop {
+      margin-top: 32px;
+    }
   }
 
   &__text {
+    margin-top: 8px;
+    @include on-desktop {
+      margin-top: 16px;
+    }
     @include body-text;
-
-    margin-top: 16px;
     color: $secondaryAccent;
   }
 }

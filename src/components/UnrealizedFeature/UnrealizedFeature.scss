@@ -3,6 +3,8 @@
 .UnrealizedFeature {
   @include default-flex($align: center, $justify: center);
 
+  z-index: 103;
+
   position: fixed;
   inset: 0;
   height: 100vh;

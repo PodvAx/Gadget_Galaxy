@@ -21,6 +21,14 @@ export const ProductDetailsSlider: React.FC<Props> = memo(
       () => ({
         modules: [Pagination],
         direction: 'vertical' as SwiperDirectionType,
+        breakpoints: {
+          0: {
+            direction: 'horizontal' as SwiperDirectionType,
+          },
+          768: {
+            direction: 'vertical' as SwiperDirectionType,
+          },
+        },
         pagination: {
           el: '.ProductDetailsSlider__pagination',
           clickable: true,

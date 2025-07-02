@@ -23,6 +23,16 @@
   &__productDetailsPage {
     margin-top: 24px;
     margin-bottom: 80px;
+
+    margin-inline: 8px;
+
+    @include on-tablet {
+      margin-inline: 64px;
+    }
+
+    @include on-small-desktop {
+      margin-inline: 0;
+    }
   }
 
   &__phonesPage {

@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { Params } from '../../types/Params';
 
@@ -17,10 +17,12 @@ type Props = {
 export const Search: React.FC<Props> = memo(({ category }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [prevQuery, setPrevQuery] = useState<string | null>(null);
+  const [prevLocation, setPrevLocation] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const timerId = useRef<NodeJS.Timeout | null>(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const { pathname } = useLocation();
 
   const handleSearchClick = () => {
     if (inputRef.current) {
@@ -60,6 +62,14 @@ export const Search: React.FC<Props> = memo(({ category }) => {
     return () => {};
   }, [searchQuery, setSearchWith, prevQuery]);
 
+  useEffect(() => {
+    if (pathname !== prevLocation) {
+      setSearchQuery('');
+      setPrevQuery(null);
+      setPrevLocation(pathname);
+    }
+  }, [pathname, prevLocation]);
+
   return (
     <div className="Search">
       <input
@@ -70,6 +80,7 @@ export const Search: React.FC<Props> = memo(({ category }) => {
         className="Search__input"
         value={searchQuery}
         onChange={event => setSearchQuery(event.target.value)}
+        aria-label="Search"
       />
       <span className="Search__icon">
         {searchQuery ? (

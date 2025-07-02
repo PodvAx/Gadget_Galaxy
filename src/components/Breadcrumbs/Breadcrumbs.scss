@@ -41,8 +41,13 @@
       }
     }
 
-    &:hover {
-      .Breadcrumbs__name {
+    @include on-hover-device {
+      &:hover .Breadcrumbs__name {
+        text-decoration: underline;
+      }
+    }
+    @include on-no-hover-device {
+      &:active .Breadcrumbs__name {
         text-decoration: underline;
       }
     }

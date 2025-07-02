@@ -1,28 +1,41 @@
 @import '../../styles-utils/utils';
 
 .Search {
-  display: none;
-  @include on-small-desktop {
-    display: block;
-  }
+  display: block;
   position: relative;
+  width: 100%;
+
+  @include on-desktop {
+    width: 327px;
+  }
 
   &__input {
+    width: 100%;
     padding-right: 40px;
     padding-left: 20px;
     font-size: 14px;
     font-weight: 600;
     line-height: 17.89px;
     height: 64px;
-    width: 327px;
-    border: 0;
     box-shadow: -1px 0 0 $hoverAndBgAccent;
     color: $primaryAccent;
+    border: 1px solid $hoverAndBgAccent;
+    @include on-desktop {
+      border: none;
+    }
 
     transition: box-shadow $transitionDuration;
 
-    &:hover {
-      box-shadow: -1px 0 0 $iconsAccent;
+    @include on-hover-device {
+      &:hover {
+        box-shadow: -1px 0 0 $primaryAccent;
+      }
+    }
+
+    @include on-no-hover-device {
+      &:active {
+        box-shadow: -1px 0 0 $secondaryAccent;
+      }
     }
 
     &:focus {
