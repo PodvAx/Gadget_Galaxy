@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.cba37313.css",
-    "main.js": "./static/js/main.3f83340a.js",
+    "main.css": "./static/css/main.dd085c98.css",
+    "main.js": "./static/js/main.e332c296.js",
     "static/media/Logo_icon.svg": "./static/media/Logo_icon.ba64db1f6f521dd8ff43641b52941306.svg",
     "static/media/fa-solid-900.ttf": "./static/media/fa-solid-900.2582b0e4bcf85eceead0.ttf",
     "static/media/fa-brands-400.ttf": "./static/media/fa-brands-400.1815e00441357e01619e.ttf",
@@ -20,11 +20,11 @@
     "static/media/Search_icon.svg": "./static/media/Search_icon.553006995435feb612ee838df712fdf1.svg",
     "static/media/Menu_Burger_icon.svg": "./static/media/Menu_Burger_icon.390b9556fdc744d00080b71bea9f9d28.svg",
     "static/media/Cross_icon.svg": "./static/media/Cross_icon.5e090dce2c65a655e18f9ddcb9371c33.svg",
-    "main.cba37313.css.map": "./static/css/main.cba37313.css.map",
-    "main.3f83340a.js.map": "./static/js/main.3f83340a.js.map"
+    "main.dd085c98.css.map": "./static/css/main.dd085c98.css.map",
+    "main.e332c296.js.map": "./static/js/main.e332c296.js.map"
   },
   "entrypoints": [
-    "static/css/main.cba37313.css",
-    "static/js/main.3f83340a.js"
+    "static/css/main.dd085c98.css",
+    "static/js/main.e332c296.js"
   ]
 }
