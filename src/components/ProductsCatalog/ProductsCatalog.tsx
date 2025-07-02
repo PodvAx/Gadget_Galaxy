@@ -117,8 +117,6 @@ export const ProductsCatalog: React.FC<Props> = memo(({ products }) => {
     });
   }, [products, sortBy, searchQuery]);
 
-  console.log('filteredProducts', filteredProducts);
-
   const slicedProducts = useMemo(() => {
     if (perPage === 'all') {
       return filteredProducts;

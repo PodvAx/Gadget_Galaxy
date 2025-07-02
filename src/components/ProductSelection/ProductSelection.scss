@@ -5,9 +5,6 @@
   @include on-tablet {
     gap: 24px;
   }
-  // @include on-desktop {
-  //   gap: 24px;
-  // }
 
   &__subhead {
     @include small-text;
